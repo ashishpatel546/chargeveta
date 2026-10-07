@@ -1,0 +1,36 @@
+{
+  "name": "ChargeVeta",
+  "tagline": "Charging station management software",
+  "description": "ChargeVeta is the software that runs EV charging networks in India: every charger on one screen, a driver app with wallet and UPI payments, fleet billing and GST invoices.",
+  "url": "https://www.chargeveta.in",
+  "domain": "chargeveta.in",
+
+  "app": {
+    "operatorUrl": "https://app.chargeveta.in",
+    "driverUrl": "https://app.chargeveta.in/driver",
+    "fleetUrl": "https://app.chargeveta.in/fleet"
+  },
+
+  "contact": {
+    "email": "support@chargeveta.in",
+    "phone": "+91-7838160389",
+    "whatsapp": "917838160389",
+    "hours": "Monday to Saturday, 9am to 7pm IST",
+    "address": {
+      "line1": "Dayalpur",
+      "locality": "North East Delhi",
+      "city": "Delhi",
+      "postalCode": "110094",
+      "country": "India"
+    },
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Dayalpur%2C%20North%20East%20Delhi%20110094"
+  },
+
+  "company": {
+    "name": "AppMeSoft Private Limited",
+    "website": "https://www.appme.in",
+    "email": "support@appme.in"
+  },
+
+  "launchYear": 2026
+}
