@@ -74,6 +74,8 @@ export default function Header() {
         <div className="hidden items-center gap-2 lg:flex">
           <a
             href={site.app.operatorUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             className="rounded-lg px-3.5 py-2 text-[0.9375rem] font-medium whitespace-nowrap text-ink transition-colors hover:text-volt"
           >
             Sign in
@@ -125,12 +127,16 @@ export default function Header() {
             </Link>
             <a
               href={site.app.operatorUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className="rounded-xl border border-line-strong px-4 py-3.5 text-center font-semibold text-ink"
             >
               Sign in to the console
             </a>
             <a
               href={site.app.driverUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className="rounded-xl border border-line-strong px-4 py-3.5 text-center font-semibold text-ink"
             >
               Open the driver app

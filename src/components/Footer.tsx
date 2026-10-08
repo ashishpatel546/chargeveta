@@ -39,6 +39,11 @@ export default function Footer() {
                 </Link>
               </li>
             ))}
+            <li>
+              <Link href="/how-it-works" className="flex min-h-11 items-center hover:text-white sm:min-h-8">
+                How it works (technical guide)
+              </Link>
+            </li>
           </ul>
         </nav>
 
@@ -46,17 +51,17 @@ export default function Footer() {
           <h2 className="text-sm font-semibold text-white">Sign in</h2>
           <ul className="mt-3 text-[0.9375rem] sm:mt-4 sm:space-y-1">
             <li>
-              <a href={site.app.operatorUrl} className="flex min-h-11 items-center hover:text-white sm:min-h-8">
+              <a href={site.app.operatorUrl} target="_blank" rel="noopener noreferrer" className="flex min-h-11 items-center hover:text-white sm:min-h-8">
                 Operator console
               </a>
             </li>
             <li>
-              <a href={site.app.driverUrl} className="flex min-h-11 items-center hover:text-white sm:min-h-8">
+              <a href={site.app.driverUrl} target="_blank" rel="noopener noreferrer" className="flex min-h-11 items-center hover:text-white sm:min-h-8">
                 Driver app
               </a>
             </li>
             <li>
-              <a href={site.app.fleetUrl} className="flex min-h-11 items-center hover:text-white sm:min-h-8">
+              <a href={site.app.fleetUrl} target="_blank" rel="noopener noreferrer" className="flex min-h-11 items-center hover:text-white sm:min-h-8">
                 Fleet portal
               </a>
             </li>

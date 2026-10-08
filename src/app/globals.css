@@ -106,6 +106,25 @@
   }
 }
 
+/* The moving current on a FlowDiagram edge. */
+@keyframes current-path {
+  to {
+    stroke-dashoffset: -32;
+  }
+}
+
+.flow-current {
+  stroke-dasharray: 2 14;
+  stroke-linecap: round;
+  animation: current-path 1.15s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flow-current {
+    display: none;
+  }
+}
+
 /* Full-height layouts: vh for older browsers, dvh where supported so the
    mobile address bar doesn't push content under the fold. */
 .full-height {
