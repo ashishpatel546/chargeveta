@@ -24,6 +24,7 @@ const sections = [
   { id: "tap", title: "Card tap" },
   { id: "remote", title: "App start" },
   { id: "session", title: "Session to receipt" },
+  { id: "smart", title: "Smart charging" },
   { id: "payments", title: "Payments" },
   { id: "people", title: "Accounts" },
   { id: "fleets", title: "Fleets" },
@@ -640,8 +641,75 @@ export default function HowItWorksPage() {
         </Section>
 
         <Section
-          id="payments"
+          id="smart"
           no="08"
+          title="Smart charging: share a site's power"
+          intro={
+            <p>
+              Every site has a fixed supply, and every charger on it would
+              happily take all of it. <b>Load management</b> shares that budget
+              between the cars charging there, live, so together they never
+              draw more than the supply allows. It works on OCPP 1.6, 2.0.1 and
+              2.1 with nothing extra on the charger: it uses the standard
+              charging profiles every smart-charging charger accepts.
+            </p>
+          }
+        >
+          <Steps
+            steps={[
+              { heading: "you switch it on" },
+              { from: "Console", to: "Core", text: "Site capacity (say 50 kW), how to share it, and optional peak-hour limits. Each charger's rating and whether it takes limits in amps or watts." },
+              { from: "Core", to: "Charger", text: "A fallback limit per connector, sized so every connector at the site together still fits. It is what a new session starts on, and what the charger keeps if it loses us." },
+              { heading: "two cars on one dual-connector charger" },
+              { from: "Core", text: "Every 15 seconds: the site's budget, then the charger's own rating, divided fairly. Both cars want full power, so 50/50." },
+              { from: "Core", to: "Charger", text: "A limit per session, renewed while we are watching; it lapses back to the fallback if we stop." },
+              { heading: "one car passes 80% and slows down" },
+              { from: "Charger", to: "Core", text: "Meter readings show car 1 drawing far less than it was offered." },
+              { from: "Core", to: "Charger", text: "Car 1 is capped at what it draws plus 20%, first. Then car 2 is given the rest of the charger." },
+              { from: "Core", text: "If car 1 starts drawing up to its cap again, it gets its share back. When it leaves, car 2 gets the whole charger." },
+            ]}
+          />
+          <Cards
+            items={[
+              {
+                title: "Two ceilings at once",
+                body: "The site's budget and each charger's own rating. A 22 kW dual-connector charger gives two cars 22 kW between them, never 22 kW each.",
+              },
+              {
+                title: "Spare power moves",
+                body: "A battery tapering near full, or a car whose onboard charger is slower than the station, hands its unused share to the other cars, including the car on the other connector.",
+              },
+              {
+                title: "A floor, then a queue",
+                body: "No car is offered less than 6 A, below which it would stop anyway. When there isn't enough for everyone, the latest arrivals wait instead of everyone crawling.",
+              },
+              {
+                title: "Peak hours",
+                body: "Lower the site's budget for chosen hours and days, such as the evening peak your electricity board charges 1.2× for under time-of-day tariffs.",
+              },
+              {
+                title: "Safe when offline",
+                body: "Fallback limits always fit the site, and each session's own limit lapses unless renewed, so a charger that loses us falls back to a limit sized for the whole site rather than keeping a share sized for a quieter moment.",
+              },
+              {
+                title: "Gentle on chargers",
+                body: "A lower limit is sent at once; a higher one only when it changes enough, at most every 30 seconds. Every limit and the charger's answer is on its command history.",
+              },
+            ]}
+          />
+          <Note>
+            Tested end to end against the open-source EVerest charger firmware,
+            with simulated cars that obey the limit, on OCPP 2.1 and 1.6: two
+            connectors split 50/50, one car tapering while the other took up
+            its power, peak-hour limits, remote start and stop, and switching
+            it off. Coming next: per-phase and panel-level limits, a site meter
+            for the building&apos;s own load and solar, and priority charging.
+          </Note>
+        </Section>
+
+        <Section
+          id="payments"
+          no="09"
           title="Payments through Razorpay"
           intro={
             <>
@@ -680,7 +748,7 @@ export default function HowItWorksPage() {
 
         <Section
           id="people"
-          no="09"
+          no="10"
           title="Operators, staff and drivers"
           intro={
             <p>
@@ -719,7 +787,7 @@ export default function HowItWorksPage() {
 
         <Section
           id="fleets"
-          no="10"
+          no="11"
           title="Fleets"
           intro={
             <p>
@@ -758,7 +826,7 @@ export default function HowItWorksPage() {
 
         <Section
           id="resilience"
-          no="11"
+          no="12"
           title="When something fails"
           intro={
             <p>
@@ -800,7 +868,7 @@ export default function HowItWorksPage() {
 
         <Section
           id="security"
-          no="12"
+          no="13"
           title="Security and data separation"
           intro={
             <p>
@@ -845,7 +913,7 @@ export default function HowItWorksPage() {
 
         <Section
           id="ocpp"
-          no="13"
+          no="14"
           title="OCPP support"
           intro={
             <p>
@@ -863,7 +931,7 @@ export default function HowItWorksPage() {
               ["Remote control", "Start, stop, reset, unlock connector, change availability, trigger message"],
               ["Configuration", "Get and change configuration (1.6), get and set variables, base reports (2.x)"],
               ["Cards", "Local authorization list, kept in sync with differential updates; reservations"],
-              ["Smart charging", "Charging profiles and composite schedules"],
+              ["Smart charging", "Site load management: a shared site budget, per-charger ratings across connectors, peak-hour limits and fallback limits, sent as standard charging profiles; composite schedules"],
               ["Firmware and logs", "Firmware update (plain and signed), diagnostics and log upload"],
               ["Security", "Security profiles 1–3, certificate install and listing, security events; the 1.6 security extension"],
               ["Monitoring (2.x)", "Set, read and clear variable monitors; device events linked to the monitor that raised them"],
