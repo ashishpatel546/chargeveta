@@ -20,6 +20,7 @@ import {
   RotateCcw,
   ScrollText,
   ShieldCheck,
+  SlidersHorizontal,
   Tags,
   UserCog,
   Users,
@@ -47,6 +48,7 @@ export const groups: Group[] = [
       { icon: HardDriveDownload, name: "Firmware and diagnostics", body: "Push signed firmware updates and fetch log files without a site visit." },
       { icon: CalendarClock, name: "Reservations", body: "Hold a connector for a driver for a set time, then release it automatically." },
       { icon: ShieldCheck, name: "Charger security", body: "Security profiles 1 to 3: password, TLS, and client certificates, with security events kept." },
+      { icon: SlidersHorizontal, name: "Smart charging", body: "Share a site's power between the cars charging there: fair shares, a car near full hands its spare to the next connector, lower limits at peak hours." },
     ],
   },
   {
