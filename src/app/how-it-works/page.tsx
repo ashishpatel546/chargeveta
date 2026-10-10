@@ -211,7 +211,7 @@ export default function HowItWorksPage() {
 
       <nav
         aria-label="Guide sections"
-        className="sticky top-16 z-30 border-y border-line bg-paper/90 backdrop-blur-md lg:top-[4.5rem]"
+        className="sticky top-16 z-30 border-y border-line bg-paper/90 backdrop-blur-md lg:top-18"
       >
         <ul className="shell flex gap-1 no-scrollbar overflow-x-auto py-2.5">
           {sections.map((s) => (
